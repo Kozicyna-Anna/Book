@@ -6,12 +6,17 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static java.lang.Long.sum;
+
 @Service
 public class DepartmentService {
     private final EmployeeService employeeService;
+
     public DepartmentService(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
+
     public Employee getMaxSalary(int departmentId) {
         return employeeService.allEmployees()
                 .stream()
@@ -27,7 +32,13 @@ public class DepartmentService {
                 .min(Comparator.comparingInt(Employee::getSalary))
                 .orElse(null);
     }
-
+    public long getSum(int departmentId) {
+        return employeeService.allEmployee()
+                .stream()
+                .filter(employee -> departmentId == employee.getDepartmentId())
+                .mapToInt(e -> e.getSalary)
+                .sum();
+    }
     public List<Employee> getByDepartment(int departmentId) {
         return employeeService.allEmployees()
                 .stream()

@@ -59,7 +59,7 @@ public class EmployeeServiceTest {
             new Employee("Oleg","Semenov",2,28_000);
             new Employee("Alexander","Petrov",2,4600);
             new Employee("Roman","Samsonov",3,37000);
-            new Employee("Igor","Romanov",1,400_000);
+            new Employee("Igor","Romanov",3,400_000);
             new Employee("test","testtest",4,4000);
             new Employee("test2","testtest2",4,4500);
             new Employee("test3","testtest3",5,6000));
@@ -70,6 +70,12 @@ public class EmployeeServiceTest {
 
         assertThat(employeeService.allEmployees()).containsExactlyElementsOf(expected);
     }
+    @Test
+    void testRemoveEmployee() {
+        assertThat(employeeService.removeEmployee("Igor","Romanov")).isTrue();
+        assertThat(employeeService.removeEmployee("NOTFOUND","NOTFOUND")).isFalse();
+    }
+
 }
 
 
