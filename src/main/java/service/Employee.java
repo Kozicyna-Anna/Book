@@ -25,7 +25,8 @@ public class Employee {
     public int getDepartmentId() {
         return departmentId;
     }
-}@Override
+}
+@Override
 public String toString() {
     return "Employee{" +
             ", lastName='`'" + lastName + '\'' +
